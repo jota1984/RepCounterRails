@@ -1,11 +1,15 @@
 <p>                                                                             
   <strong>Pushups:</strong>                                                     
-  <%= @workout.pushups %>                                                           
+  <div id="pushup_count">
+    <%= @workout.pushups %>                                                           
+  </div>
 </p>                                                                            
                                                                                 
 <p>                                                                             
   <strong>Squats:</strong>                                                      
-  <%= @workout.squats %>                                                        
+  <div id="squat_count">
+    <%= @workout.squats %>                                                        
+  </div>
 </p>                                                                            
                                                                                 
 <%= link_to 'End workout', workouts_path %>

@@ -22,6 +22,7 @@ class WorkoutsController < ApplicationController
     count += 1                                                                  
     @workout.update(squats: count)                                              
     render :nothing => true, :status => 200, :content_type => 'text/html'       
+    ActionCable.server.broadcast 'current_workout_channel', squats: count
   end                                                                           
                                                                                 
   def add_pushup                                                                
@@ -30,5 +31,6 @@ class WorkoutsController < ApplicationController
     count += 1                                                                  
     @workout.update(pushups: count)                                             
     render :nothing => true, :status => 200, :content_type => 'text/html'       
+    ActionCable.server.broadcast 'current_workout_channel', pushups: count
   end           
 end
