@@ -1,25 +1,30 @@
-<h1>Workouts</h1>                                                               
+<div class="col-xs-12">
+  <h1 class="text-center">Workouts</h1>                                                               
+</div>
                                                                                 
-<table>                                                                         
-  <thead>                                                                       
-    <tr>                                                                        
-      <th>Start Time</th>                                                           
-      <th>Push ups</th>                                                         
-      <th>Squats</th>                                                           
-    </tr>                                                                       
-  </thead>                                                                      
+<div class="col-xs-offset-3 col-xs-6">
+  <table class="table table-bordered table-hover table-condensed">                                                                         
+    <thead>                                                                       
+      <tr>                                                                        
+        <th>Start Time</th>                                                           
+        <th>Push ups</th>                                                         
+        <th>Squats</th>                                                           
+      </tr>                                                                       
+    </thead>                                                                      
+                                                                                  
+    <tbody>                                                                       
+      <% @workouts.each do |workout| %>                                               
+        <tr>                                                                      
+          <td><%= workout.start_time %></td>                                          
+          <td><%= workout.pushups %></td>                                         
+          <td><%= workout.squats %></td>                                          
+        </tr>                                                                     
+      <% end %>                                                                   
+    </tbody>                                                                      
+  </table>                                                                        
+</div>
                                                                                 
-  <tbody>                                                                       
-    <% @workouts.each do |workout| %>                                               
-      <tr>                                                                      
-        <td><%= workout.start_time %></td>                                          
-        <td><%= workout.pushups %></td>                                         
-        <td><%= workout.squats %></td>                                          
-      </tr>                                                                     
-    <% end %>                                                                   
-  </tbody>                                                                      
-</table>                                                                        
                                                                                 
-<br>                                                                            
-                                                                                
-<%= link_to 'New Workout', workouts_path, {method: :post}  %>  
+<div class="text-center col-xs-12">
+  <%= link_to 'New Workout', workouts_path, {method: :post, class: "btn btn-primary" }  %>  
+</div>

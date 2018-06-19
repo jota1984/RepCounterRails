@@ -1,15 +1,26 @@
-<p>                                                                             
-  <strong>Pushups:</strong>                                                     
-  <div id="pushup_count">
-    <%= @workout.pushups %>                                                           
+<div class="row show-grid">
+  <div class="text-center col-xs-12">
+    <h2>Workout (<%= @workout.start_time %>)</h2>
   </div>
-</p>                                                                            
-                                                                                
-<p>                                                                             
-  <strong>Squats:</strong>                                                      
-  <div id="squat_count">
-    <%= @workout.squats %>                                                        
+  <div class="col-xs-12 col-sm-offset-4 col-sm-2 text-center" >
+    <div class="panel panel-default">
+      <div class="panel-heading" >Pushups:</div>
+      <div class="panel-body" id="pushup_count">
+        <%= @workout.pushups %>
+      </div>
+    </div>
   </div>
-</p>                                                                            
-                                                                                
-<%= link_to 'End workout', workouts_path %>
+
+  <div class="col-xs-12 col-sm-2 text-center" >
+    <div class="panel panel-default">
+      <div class="panel-heading">Squats:</div>
+      <div class="panel-body" id="squat_count">
+        <%= @workout.squats %>
+      </div>
+    </div>
+  </div>
+                                                                                  
+  <div class="col-xs-12 text-center">
+    <%= link_to 'End workout', workouts_path, {class:"btn btn-danger"} %>
+  </div>
+</div>
