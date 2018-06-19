@@ -1,0 +1,25 @@
+<h1>Workouts</h1>                                                               
+                                                                                
+<table>                                                                         
+  <thead>                                                                       
+    <tr>                                                                        
+      <th>Start Time</th>                                                           
+      <th>Push ups</th>                                                         
+      <th>Squats</th>                                                           
+    </tr>                                                                       
+  </thead>                                                                      
+                                                                                
+  <tbody>                                                                       
+    <% @workouts.each do |workout| %>                                               
+      <tr>                                                                      
+        <td><%= workout.start_time %></td>                                          
+        <td><%= workout.pushups %></td>                                         
+        <td><%= workout.squats %></td>                                          
+      </tr>                                                                     
+    <% end %>                                                                   
+  </tbody>                                                                      
+</table>                                                                        
+                                                                                
+<br>                                                                            
+                                                                                
+<%= link_to 'New Workout', workouts_path, {method: :post}  %>  
