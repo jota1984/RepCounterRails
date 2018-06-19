@@ -15,7 +15,7 @@
     <tbody>                                                                       
       <% @workouts.each do |workout| %>                                               
         <tr>                                                                      
-          <td><%= workout.start_time %></td>                                          
+          <td><%= workout.start_time.localtime.strftime("%Y-%m-%d %H:%M")%></td>                                          
           <td><%= workout.pushups %></td>                                         
           <td><%= workout.squats %></td>                                          
         </tr>                                                                     
