@@ -4,10 +4,20 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
+
+    respond_to do |format| 
+      format.json 
+      format.html 
+    end
   end
 
   def index
-    @workouts = Workout.all 
+    @workouts = Workout.all   
+
+    respond_to do |format| 
+      format.json 
+      format.html 
+    end
   end
 
   def create
