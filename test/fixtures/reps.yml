@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rep_set_id: 1
+  type: 
+  date: 2018-06-26 06:41:23
+
+two:
+  rep_set_id: 1
+  type: 
+  date: 2018-06-26 06:41:23
