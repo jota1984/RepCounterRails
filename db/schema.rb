@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626114123) do
+ActiveRecord::Schema.define(version: 20180626161124) do
 
   create_table "rep_sets", force: :cascade do |t|
     t.integer  "workout_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20180626114123) do
     t.integer  "squats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "finished"
   end
 
 end

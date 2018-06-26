@@ -44,8 +44,10 @@
       </tbody>                                                                      
     </table>                                                                        
   </div>
-                                                                                  
-  <div class="col-xs-12 text-center">
-    <%= link_to 'End workout', workouts_path, {class:"btn btn-danger"} %>
-  </div>
+
+  <% if !@workout.finished? %>   
+    <div class="col-xs-12 text-center">
+      <%= link_to 'End workout', @workout, {class:"btn btn-danger", method: "put" } %>
+    </div>
+  <% end %> 
 </div>

@@ -14,7 +14,6 @@ class WorkoutsController < ApplicationController
 
   def index
     @workouts = Workout.all   
-
     respond_to do |format| 
       format.json 
       format.html 
@@ -22,14 +21,23 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    @workout = Workout.new(start_time: DateTime.now, pushups: 0, squats: 0)     
+    @workout = Workout.new(start_time: DateTime.now, pushups: 0, squats: 0, finished: false)     
     @workout.save                                                               
     redirect_to @workout 
+  end
+
+  def update 
+    @workout = Workout.find(params[:id])
+    @workout.update(finished: true ); 
+    redirect_to workouts_path
   end
 
   def add_squat                                                                 
     #get current workout 
     @workout = Workout.last                                                     
+    if @workout.finished? 
+      return
+    end
     #increase counter
     count = @workout.squats                                                     
     count += 1                                                                  
@@ -63,7 +71,10 @@ class WorkoutsController < ApplicationController
                                                                                 
   def add_pushup                                                                
     #get current workout
-    @workout = Workout.last                                                     
+    @workout = Workout.last
+    if @workout.finished?
+      return
+    end
     #increment count
     count = @workout.pushups                                                    
     count += 1                                                                  

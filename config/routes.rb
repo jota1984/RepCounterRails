@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'pushup' => 'workouts#add_pushup' 
   post 'squat' => 'workouts#add_squat'  
 
-  resources :workouts, only: [:index, :show, :create ] do
+  resources :workouts, only: [:index, :show, :create, :update ] do
     resources :rep_sets, only: [:index,:show]
   end
 
