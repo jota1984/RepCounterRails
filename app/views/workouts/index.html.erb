@@ -9,15 +9,17 @@
         <th>Start Time</th>                                                           
         <th>Push ups</th>                                                         
         <th>Squats</th>                                                           
+        <th></th>                                                           
       </tr>                                                                       
     </thead>                                                                      
                                                                                   
     <tbody>                                                                       
       <% @workouts.each do |workout| %>                                               
-        <tr>                                                                      
+        <tr>
           <td><%= workout.start_time.localtime.strftime("%Y-%m-%d %H:%M")%></td>                                          
           <td><%= workout.pushups %></td>                                         
           <td><%= workout.squats %></td>                                          
+          <td><%= link_to "view", workout %></td>                                          
         </tr>                                                                     
       <% end %>                                                                   
     </tbody>                                                                      
