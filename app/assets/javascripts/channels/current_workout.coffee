@@ -10,6 +10,9 @@ App.current_workout = App.cable.subscriptions.create "CurrentWorkoutChannel",
       id = parseInt($('meta[name=workout_id]').attr("content"))
       if id != data.workout_id
         return 
+    if data.finished 
+      location.reload() 
+      return 
     if data.squats?
       $('#squat_count').text(data.squats) 
     if data.pushups?

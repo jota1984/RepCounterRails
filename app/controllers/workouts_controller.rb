@@ -6,7 +6,7 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find(params[:id])
     @rep_sets = @workout.rep_sets
 
-    if @workout.finished? 
+    if @workout.finished? and @workout.reps.count > 0
       first_rep_time = @workout.reps.first.date
       @timeline_data = @rep_sets.map do |r| 
         [r.rep_type, r.start_time - first_rep_time, r.end_time - first_rep_time] 
@@ -41,6 +41,9 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find(params[:id])
     @workout.update(finished: true ); 
     redirect_to @workout
+    ActionCable.server.broadcast 'current_workout_channel', 
+      { finished: true, 
+        workout_id: @workout.id } 
   end
 
   def add_squat                                                                 
