@@ -7,8 +7,14 @@ class RepSet < ApplicationRecord
   end
 
   def duration 
-    start_time = self.reps.first.date
-    end_time = self.reps.last.date
     end_time - start_time
+  end
+
+  def start_time 
+    self.reps.first.date
+  end
+
+  def end_time 
+    self.reps.last.date
   end
 end

@@ -6,6 +6,17 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find(params[:id])
     @rep_sets = @workout.rep_sets
 
+    if @workout.finished? 
+      first_rep_time = @workout.reps.first.date
+      @timeline_data = @rep_sets.map do |r| 
+        [r.rep_type, r.start_time - first_rep_time, r.end_time - first_rep_time] 
+      end
+      @pie_data = ["pushup", "squat"].map do |t|
+        [t+"s", @rep_sets.where(rep_type: t).to_a.map { |r| r.duration}.inject(0,:+)]
+      end.to_h  
+      @pie_data["rest"] = @workout.duration - @pie_data.values.inject(0,:+) 
+    end
+
     respond_to do |format| 
       format.json 
       format.html 
@@ -29,7 +40,7 @@ class WorkoutsController < ApplicationController
   def update 
     @workout = Workout.find(params[:id])
     @workout.update(finished: true ); 
-    redirect_to workouts_path
+    redirect_to @workout
   end
 
   def add_squat                                                                 

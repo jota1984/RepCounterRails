@@ -3,49 +3,104 @@
   <div class="text-center col-xs-12">
     <h2>Workout (<%= @workout.start_time.localtime.strftime("%Y-%m-%d %H:%M")%>)</h2>
   </div>
-  <div class="col-xs-12 col-sm-offset-4 col-sm-2 text-center" >
-    <div class="panel panel-default">
-      <div class="panel-heading" >Pushups:</div>
-      <div class="panel-body" id="pushup_count">
-        <%= @workout.pushups %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xs-12 col-sm-2 text-center" >
-    <div class="panel panel-default">
-      <div class="panel-heading">Squats:</div>
-      <div class="panel-body" id="squat_count">
-        <%= @workout.squats %>
-      </div>
-    </div>
-  </div>
   
-  <div class="col-xs-offset-3 col-xs-6">
-    <table id="sets" class="table table-bordered table-hover table-condensed">                                                                         
-      <thead>                                                                       
-        <tr>                                                                        
-          <th>Set #</th>                                                           
-          <th>Type</th>                                                         
-          <th>Count</th>                                                         
-          <th>Duration</th>                                                         
-        </tr>                                                                       
-      </thead>                                                                      
 
-      <tbody>                                                                       
-        <% @rep_sets.each do |rep_set| %>                                               
-          <tr>                                                                      
-            <td><%= rep_set.number %></td>                                         
-            <td><%= rep_set.rep_type %></td>                                          
-            <td><%= rep_set.count %></td>                                          
-            <td><%= rep_set.duration.round %></td>                                          
-          </tr>                                                                     
-        <% end %>                                                                   
-      </tbody>                                                                      
-    </table>                                                                        
-  </div>
+  <% if @workout.finished? %>   
+    <div class="col-xs-6 text-center">
+      <div class="panel panel-default">
+        <div class="panel-heading">Sets</div>
+        <div class="panel-body" >
+        </div>
+          <table id="sets" class="table table-bordered table-hover table-condensed">                                                                         
+            <thead>                                                                       
+              <tr>                                                                        
+                <th>Set #</th>                                                           
+                <th>Type</th>                                                         
+                <th>Count</th>                                                         
+                <th>Duration</th>                                                         
+              </tr>                                                                       
+            </thead>                                                                      
 
-  <% if !@workout.finished? %>   
+            <tbody>                                                                       
+              <% @rep_sets.each do |rep_set| %>                                               
+                <tr>                                                                      
+                  <td><%= rep_set.number %></td>                                         
+                  <td><%= rep_set.rep_type %></td>                                          
+                  <td><%= rep_set.count %></td>                                          
+                  <td><%= rep_set.duration.round %></td>                                          
+                </tr>                                                                     
+              <% end %>                                                                   
+            </tbody>                                                                      
+          </table>                                                                        
+      </div>
+    </div>
+    <div class="col-xs-6 text-center">
+      <div class="panel panel-default">
+        <div class="panel-heading" >Totals</div>
+        <div class="panel-body" style="padding-top=0" >
+        </div>
+          <%= column_chart ({ squats: @workout.squats, pushups: @workout.pushups}) %>
+      </div>
+    </div>
+    </div>
+    <div class="col-xs-12 text-center">
+      <div class="panel panel-default">
+        <div class="panel-heading" >Rest Time </div>
+        <div class="panel-body" >
+        </div>
+        <%= pie_chart @pie_data, {width: '100%', height: '300px', chartArea: {width:'50%',height: '100%', left: 100, top: 100}} %>
+      </div>
+    </div>
+    <div class="col-xs-12 text-center">
+      <div class="panel panel-default">
+        <div class="panel-heading" >Time line</div>
+        <div class="panel-body" >
+        </div>
+          <%= timeline @timeline_data, {width: '100%', height: '150px'}  %>
+      </div>
+    </div>
+  <% else %>   
+    <div class="col-xs-12 col-sm-offset-4 col-sm-2 text-center" >
+      <div class="panel panel-default">
+        <div class="panel-heading" >Pushups:</div>
+        <div class="panel-body" id="pushup_count">
+          <%= @workout.pushups %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 text-center" >
+      <div class="panel panel-default">
+        <div class="panel-heading">Squats:</div>
+        <div class="panel-body" id="squat_count">
+          <%= @workout.squats %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 text-center" ></div> 
+    <div class="col-xs-offset-3 col-xs-6">
+      <table id="sets" class="table table-bordered table-hover table-condensed">                                                                         
+        <thead>                                                                       
+          <tr>                                                                        
+            <th>Set #</th>                                                           
+            <th>Type</th>                                                         
+            <th>Count</th>                                                         
+            <th>Duration</th>                                                         
+          </tr>                                                                       
+        </thead>                                                                      
+
+        <tbody>                                                                       
+          <% @rep_sets.each do |rep_set| %>                                               
+            <tr>                                                                      
+              <td><%= rep_set.number %></td>                                         
+              <td><%= rep_set.rep_type %></td>                                          
+              <td><%= rep_set.count %></td>                                          
+              <td><%= rep_set.duration.round %></td>                                          
+            </tr>                                                                     
+          <% end %>                                                                   
+        </tbody>                                                                      
+      </table>                                                                        
+    </div>
     <div class="col-xs-12 text-center">
       <%= link_to 'End workout', @workout, {class:"btn btn-danger", method: "put" } %>
     </div>
