@@ -117,4 +117,23 @@ class WorkoutsController < ApplicationController
         set_duration: @rep_set.duration.round,
         workout_id: @workout.id } 
   end           
+
+  def add_bio
+    @workout = Workout.last 
+    if @workout.finished?
+      return
+    end
+    if (params[:temp].nil? or params[:hr].nil?) 
+      return 
+    end
+    @workout.bio_entries.create(date: DateTime.now, 
+                                temperature: params[:temp],
+                                heart_rate: params[:hr]) 
+    render :nothing => true, :status => 200, :content_type => 'text/html'       
+    ActionCable.server.broadcast 'current_workout_channel', 
+      { temperature: params[:temp], 
+        heart_rate: params[:hr], 
+        workout_id: @workout.id } 
+
+  end
 end

@@ -1,0 +1,2 @@
+module BioEntriesHelper
+end
