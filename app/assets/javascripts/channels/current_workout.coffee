@@ -17,6 +17,10 @@ App.current_workout = App.cable.subscriptions.create "CurrentWorkoutChannel",
       $('#squat_count').text(data.squats) 
     if data.pushups?
       $('#pushup_count').text(data.pushups) 
+    if data.temperature?
+      $('#temperature_realtime').text(data.temperature) 
+    if data.heart_rate?
+      $('#heartrate_realtime').text(data.heart_rate) 
     if data.current_set?
       htmlCurrentSet = parseInt($('#sets tr:last-child td:first-child').text())
       if data.current_set != htmlCurrentSet 

@@ -60,7 +60,7 @@
       </div>
     </div>
   <% else %>   
-    <div class="col-xs-12 col-sm-offset-4 col-sm-2 text-center" >
+    <div class="col-xs-12 col-sm-offset-2 col-sm-2 text-center" >
       <div class="panel panel-default">
         <div class="panel-heading" >Pushups:</div>
         <div class="panel-body" id="pushup_count">
@@ -68,12 +68,28 @@
         </div>
       </div>
     </div>
-
     <div class="col-xs-12 col-sm-2 text-center" >
       <div class="panel panel-default">
         <div class="panel-heading">Squats:</div>
         <div class="panel-body" id="squat_count">
           <%= @workout.squats %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-2 text-center" >
+      <div class="panel panel-default">
+        <div class="panel-heading">Heartrate:</div>
+        <div class="panel-body" id="heartrate_realtime">
+          <%= @workout.last_hr %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-2 text-center" >
+      <div class="panel panel-default">
+        <div class="panel-heading">Temp:</div>
+        <div class="panel-body" id="temperature_realtime">
+          <%= @workout.last_temp %>
         </div>
       </div>
     </div>
